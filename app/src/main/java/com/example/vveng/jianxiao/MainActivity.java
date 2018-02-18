@@ -1,7 +1,6 @@
 package com.example.vveng.jianxiao;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.vveng.jianxiao.view.ChatFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
        // mainBottomNavigationBar.setBarBackgroundColor(R.color.lncRed);
 
         mainBottomNavigationBar
-                .addItem(new BottomNavigationItem(R.mipmap.home,"首页").setActiveColorResource(R.color.lncRed))
-                .addItem(new BottomNavigationItem(R.mipmap.raiders,"攻略").setActiveColorResource(R.color.lncRed))
-                .addItem(new BottomNavigationItem(R.mipmap.chat,"消息").setActiveColorResource(R.color.lncRed))
-                .addItem(new BottomNavigationItem(R.mipmap.hot,"看点").setActiveColorResource(R.color.lncRed))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_home,"首页").setActiveColorResource(R.color.lncRed))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_raiders,"攻略").setActiveColorResource(R.color.lncRed))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_chat,"消息").setActiveColorResource(R.color.lncRed))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_hot,"看点").setActiveColorResource(R.color.lncRed))
                 .setFirstSelectedPosition(0)
                 .initialise();
         mainBottomNavigationBar.setTabSelectedListener(this);

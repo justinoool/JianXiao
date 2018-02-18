@@ -7,5 +7,5 @@
     <string name="hot">看点</string>
     <string name="chat">消息</string>
     <string name="raiders">攻略</string>
-
+    <string name="scale_up_show_behavior">com.example.vveng.jianxiao.view.behavior.FabScrollBehavior</string>
 </resources>

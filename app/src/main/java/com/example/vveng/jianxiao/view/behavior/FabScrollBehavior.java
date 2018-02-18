@@ -1,4 +1,4 @@
-package com.example.vveng.jianxiao;
+package com.example.vveng.jianxiao.view.behavior;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
