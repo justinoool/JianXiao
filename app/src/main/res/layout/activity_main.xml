@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/main_drawerLayout"
+    android:fitsSystemWindows="true"
     tools:context="com.example.vveng.jianxiao.MainActivity">
 
  <LinearLayout
+
      android:orientation="vertical"
      android:layout_width="match_parent"
      android:layout_height="match_parent">
@@ -31,8 +33,9 @@
 
     <!--一定要放在draw最后-->
     <android.support.design.widget.NavigationView
+        android:fitsSystemWindows="true"
         android:id="@+id/main_nav_view"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
