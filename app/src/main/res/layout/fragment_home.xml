@@ -1,51 +1,53 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.vveng.jianxiao.HomeFragment">
+    tools:context="com.example.vveng.jianxiao.view.fragment.HomeFragment">
 
+<FrameLayout
+    android:id="@+id/home_framelayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <android.support.v7.widget.Toolbar
         android:id="@+id/home_toolbar"
-        android:background="@color/lncRed"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-        
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/lncRed"/>
+
     <com.example.vveng.jianxiao.view.customizeview.MaterialSearchView
-        android:layout_width="match_parent"
         android:id="@+id/home_search"
-        android:layout_height="wrap_content"/>
- <android.support.design.widget.CoordinatorLayout
-     android:layout_width="match_parent"
-     android:id="@+id/home_cdlayout"
-     android:layout_below="@+id/home_toolbar"
-     android:layout_height="match_parent">
-<com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout
-    android:id="@+id/home_superrefresh"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/home_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout>
+        android:layout_height="wrap_content" />
+</FrameLayout>
 
 
-     <android.support.design.widget.FloatingActionButton
-         android:id="@+id/home_fab"
-         android:layout_margin="16dp"
-         android:src="@mipmap/ic_feather"
-         app:backgroundTint="@color/lncRed"
-         app:rippleColor="@color/inlncRed"
-         app:borderWidth="0dp"
-         android:layout_gravity="bottom|right"
-         app:elevation="4dp"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/home_srlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
 
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none"/>
 
- </android.support.design.widget.CoordinatorLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
-</RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/home_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@mipmap/ic_feather"
+        app:backgroundTint="@color/lncRed"
+        app:borderWidth="0dp"
+        app:layout_behavior="@string/scale_up_show_behavior"
+        app:elevation="4dp"
+        app:rippleColor="@color/inlncRed" />
+
+</android.support.design.widget.CoordinatorLayout>

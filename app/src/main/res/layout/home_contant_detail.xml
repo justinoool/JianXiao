@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/home_item_tx"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/test_tx"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@+id/home_item_tx"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/home1_item_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:maxEms="15"
+                android:maxLines="1"
+                android:text="lncsoftware"
+                android:textColor="#9A9A9A"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/home1_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/home1_item_username"
+                android:layout_marginLeft="8dp"
+                android:maxEms="4"
+                android:maxLines="1"
+                android:text="1分钟"
+                android:textColor="#9A9A9A"
+                android:textSize="10sp"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/ic_home_fork"
+            android:layout_width="12dp"
+            android:layout_height="12dp" />
+
+    </RelativeLayout>

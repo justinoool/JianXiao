@@ -12,4 +12,19 @@
         <attr name="android:textColorHint" />
         <attr name="android:inputType" />
     </declare-styleable>
+
+    <declare-styleable name="expandableTextView">
+        <!-- 默认折叠状态下，文字最多显示的行数 -->
+        <attr name="maxCollapsedLines" format="integer"/>
+        <!-- 动画时长 -->
+        <attr name="animDuration" format="integer"/>
+        <!-- 动画启动时文字的透明度 -->
+        <attr name="animAlphaStart" format="float"/>
+        <!-- 将文字展开的图标（向下的箭头） -->
+        <attr name="expandDrawable" format="reference"/>
+        <!-- 将文字收起的图标（向上的箭头） -->
+        <attr name="collapseDrawable" format="reference"/>
+
+
+    </declare-styleable>
 </resources>

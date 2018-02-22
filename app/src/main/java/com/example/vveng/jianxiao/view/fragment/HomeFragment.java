@@ -1,17 +1,17 @@
-package com.example.vveng.jianxiao;
+package com.example.vveng.jianxiao.view.fragment;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.support.design.widget.CoordinatorLayout;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -23,8 +23,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.vveng.jianxiao.R;
+import com.example.vveng.jianxiao.presenter.HomePresenter;
+import com.example.vveng.jianxiao.presenter.home.IHomeFragment;
+import com.example.vveng.jianxiao.view.adapter.HomeAdapter;
 import com.example.vveng.jianxiao.view.customizeview.MaterialSearchView;
-import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 
 import java.util.ArrayList;
 
@@ -37,24 +47,23 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements IHomeFragment {
 
     @BindView(R.id.home_toolbar)
     Toolbar homeToolbar;
     @BindView(R.id.home_recyclerview)
     RecyclerView homeRecyclerview;
-
-    @BindView(R.id.home_cdlayout)
-    CoordinatorLayout homeCdlayout;
     Unbinder unbinder;
-    @BindView(R.id.home_superrefresh)
-    SuperSwipeRefreshLayout homeSuperrefresh;
     @BindView(R.id.home_fab)
     FloatingActionButton homeFab;
 
-    DrawerLayout drawerLayout;
-    @BindView(R.id.home_search)
-    MaterialSearchView homeSearch;
+
+    private DrawerLayout drawerLayout;
+    private MaterialSearchView homeSearch;
+    private HomeAdapter adapter;
+    private HomePresenter presenter;
+    private SmartRefreshLayout homerefreshLayout;
+    private static boolean isFirstEnter = true;
 
     public static HomeFragment newInstance(String s1) {
         HomeFragment fragment = new HomeFragment();
@@ -62,6 +71,12 @@ public class HomeFragment extends Fragment {
         args.putString("agrs1", s1);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true); //只有加上这句话fragment中的onCreateOptionsMenu才会执行
     }
 
     @Override
@@ -73,21 +88,68 @@ public class HomeFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         //初始化标题栏
         initToolbar();
-
         //初始化搜索框
-        initSearch();
+        //  initSearch(view);
+        //初始话数据
+        initdata();
+        //初始化recyclerview
+        initRecyclerview();
+
+        initSmartFresh(view);
         return view;
     }
 
-    private void initSearch() {
+    private void initSmartFresh(View view) {
+        homerefreshLayout  = view.findViewById(R.id.home_srlayout);
+        if (isFirstEnter) {
+            isFirstEnter = false;
+            //触发上拉加载
+            homerefreshLayout.autoLoadMore();
+        }
+        homerefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                Toast.makeText(getActivity(), "刷新", Toast.LENGTH_SHORT).show();
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+        homerefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                Toast.makeText(getActivity(), "加载更多", Toast.LENGTH_SHORT).show();
+                refreshlayout.finishLoadMore(2000);//传入false表示加载失败
+            }
+        });
+    }
+
+
+    private void initRecyclerview() {
+        homeRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        homeRecyclerview.setAdapter(adapter);
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initdata() {
+        presenter = new HomePresenter(getActivity(), this);
+        presenter.loaddata();
+    }
+
+
+    /**
+     * 初始化搜索框
+     */
+    private void initSearch(View view) {
+        homeSearch = view.findViewById(R.id.home_search);
         homeSearch.setVoiceSearch(false);
         homeSearch.setCursorDrawable(R.drawable.home_custom_cursor);
-        homeSearch.setEllipsize(true);
+        homeSearch.setEllipsize(false);
         homeSearch.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
         homeSearch.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getActivity(), ""+query, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "" + query, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -98,17 +160,31 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    /**
+     * 设置search的menu
+     *
+     * @param menu
+     * @param inflater
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_home_search,menu);
+        inflater.inflate(R.menu.menu_home_search, menu);
         MenuItem item = menu.findItem(R.id.action_search);
-        homeSearch.setMenuItem(item);
+//        homeSearch.setMenuItem(item);
     }
 
 
+    /**
+     * 处理搜索框的回调
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             if (matches != null && matches.size() > 0) {
@@ -159,4 +235,10 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @Override
+    public void loaddata(ArrayList<String> arrayList) {
+        adapter = new HomeAdapter(getActivity(), arrayList);
+    }
+
 }
