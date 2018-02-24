@@ -245,6 +245,7 @@ public class HomeFragment extends Fragment implements IHomeFragment {
 
     @Override
     public void loaddata(ArrayList<HomeItemBean> arrayList) {
-      adapter.setData(arrayList);
+        adapter = new HomeAdapter(getActivity(),arrayList);
+        homeRecyclerview.setAdapter(adapter);
     }
 }

@@ -33,7 +33,7 @@ public class HomePresenter {
     private final  static  String TAG = "HomePresenter";
     private Context context;
     private IHomeFragment iHomeFragment;
-    private ArrayList<HomeItemBean> arrayList = new ArrayList<>();
+    //private ArrayList<HomeItemBean> arrayList = new ArrayList<>();
     private String[] username;
     private String[] strings;
     private int[] tx;
@@ -59,18 +59,9 @@ public class HomePresenter {
 
                 "喜欢一个人，就是看着她笑自己也会笑，再聪明再勇敢的我在她面前会变得笨拙，当她受伤时不知所措的心疼，当疲倦的夜晚只要想起她也有了坚持下去的动力和信心。这一切很简单，只是因为我喜欢她。",
         };
-
-        for (int i = 0; i < 5; i++) {
-            getResultsBean(i+1,i+1,i);
-        }
-
-    }
-
-    private void getResultsBean(final int num, final int ye, final int i) {
-
         Observable<HomeItemBean> observable = RetrofitManage.newInstance()
                 .getApiStore(ApiStore.photo_url)
-                .getHomeItemPhotoData(num, ye);
+                .getHomeItemPhotoData(9, 1);
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -82,12 +73,13 @@ public class HomePresenter {
 
                     @Override
                     public void onNext(HomeItemBean homeItemBean) {
-                        homeItemBean.setUsername(username[i]);
-                        homeItemBean.setContext(strings[i]);
+                        homeItemBean.setUsername(username[0]);
+                        homeItemBean.setContext(strings[0]);
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String data = sdf.format(new Date());
                         homeItemBean.setTime(data);
-                        homeItemBean.setUsername_tx(num % 2 == 0 ? tx[0] : tx[1]);
+                        homeItemBean.setUsername_tx(tx[0]);
+                        ArrayList<HomeItemBean> arrayList = new ArrayList<>();
                         arrayList.add(homeItemBean);
                         iHomeFragment.loaddata(arrayList);
                         Log.d(TAG,"onNext:"+homeItemBean.getResults().size());
@@ -103,6 +95,11 @@ public class HomePresenter {
 
                     }
                 });
+
+    }
+
+    private void getResultsBean(final int num, final int ye, final int i) {
+
 
     }
 }

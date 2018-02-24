@@ -18,11 +18,13 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.vveng.jianxiao.utils.BackHandlerHelper;
+import com.example.vveng.jianxiao.utils.GlideImageLoder;
 import com.example.vveng.jianxiao.view.fragment.ChatFragment;
 import com.example.vveng.jianxiao.view.fragment.HomeFragment;
 import com.example.vveng.jianxiao.view.fragment.RaidersFragment;
 import com.example.vveng.jianxiao.view.fragment.SellRoommateFragment;
 import com.jaeger.library.StatusBarUtil;
+import com.lzy.ninegrid.NineGridView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        NineGridView.setImageLoader(new GlideImageLoder());
         ButterKnife.bind(this);
        StatusBarUtil.setColorForDrawerLayout(this,mainDrawerLayout,0,0);
         Initbottombar();
