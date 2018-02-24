@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.vveng.jianxiao.R;
+import com.example.vveng.jianxiao.model.HomeItemBean;
 import com.example.vveng.jianxiao.presenter.HomePresenter;
 import com.example.vveng.jianxiao.presenter.home.IHomeFragment;
 import com.example.vveng.jianxiao.view.adapter.HomeAdapter;
@@ -57,13 +59,14 @@ public class HomeFragment extends Fragment implements IHomeFragment {
     @BindView(R.id.home_fab)
     FloatingActionButton homeFab;
 
-
+    private final static String TAG = "HomeFragment";
     private DrawerLayout drawerLayout;
     private MaterialSearchView homeSearch;
     private HomeAdapter adapter;
     private HomePresenter presenter;
     private SmartRefreshLayout homerefreshLayout;
     private static boolean isFirstEnter = true;
+    private ArrayList<HomeItemBean> arrayList = new ArrayList<>();
 
     public static HomeFragment newInstance(String s1) {
         HomeFragment fragment = new HomeFragment();
@@ -91,10 +94,10 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         //初始化搜索框
         //  initSearch(view);
         //初始话数据
-        initdata();
+
         //初始化recyclerview
         initRecyclerview();
-
+        initdata();
         initSmartFresh(view);
         return view;
     }
@@ -125,6 +128,7 @@ public class HomeFragment extends Fragment implements IHomeFragment {
 
     private void initRecyclerview() {
         homeRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new HomeAdapter(getActivity(),arrayList);
         homeRecyclerview.setAdapter(adapter);
     }
 
@@ -134,6 +138,9 @@ public class HomeFragment extends Fragment implements IHomeFragment {
     private void initdata() {
         presenter = new HomePresenter(getActivity(), this);
         presenter.loaddata();
+
+        Log.d(TAG,"initData:"+arrayList.size());
+
     }
 
 
@@ -237,8 +244,7 @@ public class HomeFragment extends Fragment implements IHomeFragment {
     }
 
     @Override
-    public void loaddata(ArrayList<String> arrayList) {
-        adapter = new HomeAdapter(getActivity(), arrayList);
+    public void loaddata(ArrayList<HomeItemBean> arrayList) {
+      adapter.setData(arrayList);
     }
-
 }

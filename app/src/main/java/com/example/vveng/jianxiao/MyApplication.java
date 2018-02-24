@@ -3,9 +3,12 @@ package com.example.vveng.jianxiao;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+import android.widget.ImageView;
 
 import com.example.vveng.jianxiao.utils.DynamicTimeFormat;
+import com.lzy.ninegrid.NineGridView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
@@ -60,4 +63,7 @@ public class MyApplication extends Application {
             }
         });
     }
+
+
+
 }

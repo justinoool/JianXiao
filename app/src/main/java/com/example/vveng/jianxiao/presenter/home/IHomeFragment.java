@@ -1,5 +1,7 @@
 package com.example.vveng.jianxiao.presenter.home;
 
+import com.example.vveng.jianxiao.model.HomeItemBean;
+
 import java.util.ArrayList;
 
 /**
@@ -8,5 +10,5 @@ import java.util.ArrayList;
  */
 
 public interface IHomeFragment {
-    void loaddata(ArrayList<String> arrayList);
+    void loaddata(ArrayList<HomeItemBean> datas);
 }
