@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@+id/home_item_nine"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_home_good"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/home_item_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="4"
+                android:maxLength="5"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="3000"
+                android:textColor="#8B8B90"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_home_bad"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/home1_item_bad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="4"
+                android:maxLength="5"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="3000"
+                android:textColor="#8B8B90"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_home_comment"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/home1_item_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="4"
+                android:maxLength="5"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="3000"
+                android:textColor="#8B8B90"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_home_share"
+                android:scaleType="centerCrop"/>
+        </LinearLayout>
+
+    </LinearLayout>

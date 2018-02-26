@@ -44,7 +44,7 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:src="@mipmap/ic_feather"
-        app:backgroundTint="@color/lncRed"
+        app:backgroundTint="@color/inlncRed"
         app:borderWidth="0dp"
         app:layout_behavior="@string/scale_up_show_behavior"
         app:elevation="4dp"

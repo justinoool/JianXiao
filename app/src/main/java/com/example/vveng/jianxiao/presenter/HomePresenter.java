@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -59,9 +60,13 @@ public class HomePresenter {
 
                 "喜欢一个人，就是看着她笑自己也会笑，再聪明再勇敢的我在她面前会变得笨拙，当她受伤时不知所措的心疼，当疲倦的夜晚只要想起她也有了坚持下去的动力和信心。这一切很简单，只是因为我喜欢她。",
         };
+        Random random = new Random();
+        int i = random.nextInt(8)+1;
+        int j = random.nextInt(19)+1;
+        Log.d(TAG,"i:"+i+"j:"+j);
         Observable<HomeItemBean> observable = RetrofitManage.newInstance()
                 .getApiStore(ApiStore.photo_url)
-                .getHomeItemPhotoData(9, 1);
+                .getHomeItemPhotoData(i, j);
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -72,17 +77,22 @@ public class HomePresenter {
                     }
 
                     @Override
-                    public void onNext(HomeItemBean homeItemBean) {
-                        homeItemBean.setUsername(username[0]);
-                        homeItemBean.setContext(strings[0]);
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        String data = sdf.format(new Date());
-                        homeItemBean.setTime(data);
-                        homeItemBean.setUsername_tx(tx[0]);
+                    public void onNext(HomeItemBean Bean) {
                         ArrayList<HomeItemBean> arrayList = new ArrayList<>();
-                        arrayList.add(homeItemBean);
+                        List<HomeItemBean.ResultsBean> beans = Bean.getResults();
+                            for(int i=0;i<5;i++){
+                            HomeItemBean homeItemBean  = new HomeItemBean();
+                            homeItemBean.setUsername(username[i]);
+                            homeItemBean.setContext(strings[i]);
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            String data = sdf.format(new Date());
+                            homeItemBean.setTime(data);
+                            homeItemBean.setUsername_tx(i%2==0? tx[0]:tx[1] );
+                            homeItemBean.setResults(beans);
+                            arrayList.add(homeItemBean);
+                        }
                         iHomeFragment.loaddata(arrayList);
-                        Log.d(TAG,"onNext:"+homeItemBean.getResults().size());
+                        Log.d(TAG,"onNext:"+Bean.getResults().size());
                     }
 
                     @Override
@@ -98,8 +108,4 @@ public class HomePresenter {
 
     }
 
-    private void getResultsBean(final int num, final int ye, final int i) {
-
-
-    }
 }

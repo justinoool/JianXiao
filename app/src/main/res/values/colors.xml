@@ -6,6 +6,8 @@
     <color name="lncRed">#d32f2f</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#2a2828</color>
+    <color name="fab_color">#cefadf</color>
+    <color name="infab_color">#84d6a5</color>
     <color name="inlncRed">#c34949</color>
     <color name="search_layover_bg">#50000000</color>
     <color name="nav_black">#515151</color>

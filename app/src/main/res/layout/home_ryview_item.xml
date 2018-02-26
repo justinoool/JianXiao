@@ -58,9 +58,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             eineGridView:ngv_maxSize="9"
-            eineGridView:ngv_mode="grid"
             />
 
+
+  <include android:id="@+id/home_good_bad_comment_share"
+      layout="@layout/home_good_bad_comment_share"/>
 
     </RelativeLayout>
 

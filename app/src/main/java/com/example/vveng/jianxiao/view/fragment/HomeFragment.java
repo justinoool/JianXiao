@@ -92,14 +92,28 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         //初始化标题栏
         initToolbar();
         //初始化搜索框
-        //  initSearch(view);
-        //初始话数据
+         initSearch(view);
+
+       //初始化fab
+        initFab();
 
         //初始化recyclerview
         initRecyclerview();
+        //初始话数据
         initdata();
+
         initSmartFresh(view);
         return view;
+    }
+
+
+    private void initFab() {
+        homeFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "点击了fab", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initSmartFresh(View view) {
@@ -113,13 +127,14 @@ public class HomeFragment extends Fragment implements IHomeFragment {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 Toast.makeText(getActivity(), "刷新", Toast.LENGTH_SHORT).show();
+                presenter.loaddata();
                 refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
             }
         });
         homerefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                Toast.makeText(getActivity(), "加载更多", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getActivity(), "加载更多", Toast.LENGTH_SHORT).show();
                 refreshlayout.finishLoadMore(2000);//传入false表示加载失败
             }
         });
@@ -149,6 +164,8 @@ public class HomeFragment extends Fragment implements IHomeFragment {
      */
     private void initSearch(View view) {
         homeSearch = view.findViewById(R.id.home_search);
+        homeSearch.closeSearch();
+        homeSearch.clearFocus();
         homeSearch.setVoiceSearch(false);
         homeSearch.setCursorDrawable(R.drawable.home_custom_cursor);
         homeSearch.setEllipsize(false);
@@ -178,7 +195,7 @@ public class HomeFragment extends Fragment implements IHomeFragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_home_search, menu);
         MenuItem item = menu.findItem(R.id.action_search);
-//        homeSearch.setMenuItem(item);
+        homeSearch.setMenuItem(item);
     }
 
 
@@ -245,7 +262,6 @@ public class HomeFragment extends Fragment implements IHomeFragment {
 
     @Override
     public void loaddata(ArrayList<HomeItemBean> arrayList) {
-        adapter = new HomeAdapter(getActivity(),arrayList);
-        homeRecyclerview.setAdapter(adapter);
+         adapter.setData(arrayList);
     }
 }
