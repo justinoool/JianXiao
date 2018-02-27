@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.vveng.jianxiao.utils.BackHandlerHelper;
 import com.example.vveng.jianxiao.utils.GlideImageLoder;
+import com.example.vveng.jianxiao.view.customizeview.MaterialSearchView;
 import com.example.vveng.jianxiao.view.fragment.ChatFragment;
 import com.example.vveng.jianxiao.view.fragment.HomeFragment;
 import com.example.vveng.jianxiao.view.fragment.RaidersFragment;
@@ -238,9 +240,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     //重写onBackPressed实现按下物理back键退出程序切换后台但是不杀死程序
     @Override
     public void onBackPressed() {
-        if (!BackHandlerHelper.handleBackPress(this)) {
-            super.onBackPressed();
-        }
+
         Intent i = new Intent(Intent.ACTION_MAIN);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i.addCategory(Intent.CATEGORY_HOME);
