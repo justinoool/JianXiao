@@ -1,13 +1,56 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.vveng.jianxiao.view.fragment.RaidersFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <RelativeLayout
+       android:id="@+id/raiders_layout_title"
+       android:background="@color/lncRed"
+       android:layout_width="match_parent"
+       android:layout_height="45dp">
+       <TextView
+           android:layout_centerInParent="true"
+           android:text="攻略"
+           android:textColor="@color/white"
+           android:textSize="18sp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+   </RelativeLayout>
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/raiders_layout_order"
+        android:background="@drawable/raiders_order_selector"
+        android:layout_below="@+id/raiders_layout_title"
+        android:layout_width="match_parent"
+        android:clickable="true"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:textSize="14sp"
+            android:textColor="@color/color_black"
+            android:text="我的订单"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+     <TextView
+         android:layout_toLeftOf="@+id/raiders_image"
+            android:layout_centerVertical="true"
+            android:textSize="12sp"
+            android:text="全部订单"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/raiders_image"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:src="@mipmap/ic_raiders_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+  
+</RelativeLayout>
