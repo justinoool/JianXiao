@@ -10,15 +10,15 @@ import android.widget.Toast;
 
 import com.example.vveng.jianxiao.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChatFragment extends Fragment {
+public class ShoppingFragment extends BaseFragment {
 
 
-    public static ChatFragment newInstance(String s1) {
-        ChatFragment fragment = new ChatFragment();
+
+    public static ShoppingFragment newInstance(String s1) {
+        ShoppingFragment fragment = new ShoppingFragment();
         Bundle args = new Bundle();
         args.putString("agrs1", s1);
         fragment.setArguments(args);
@@ -30,7 +30,11 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        return inflater.inflate(R.layout.fragment_shopping, container, false);
     }
 
+    @Override
+    protected void loadData() {
+        Toast.makeText(getActivity(), "shop加载了数据", Toast.LENGTH_SHORT).show();
+    }
 }

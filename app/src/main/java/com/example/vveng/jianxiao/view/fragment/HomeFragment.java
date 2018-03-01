@@ -33,10 +33,7 @@ import com.example.vveng.jianxiao.view.customizeview.MaterialSearchView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 
 import java.util.ArrayList;
 
