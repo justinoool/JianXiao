@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.example.vveng.jianxiao.R;
-import com.example.vveng.jianxiao.view.adapter.RaidersViewpagerAdapter;
+
+
+import com.example.vveng.jianxiao.view.adapter.home.RaidersViewpagerAdapter;
+
 
 import java.util.ArrayList;
 

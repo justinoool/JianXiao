@@ -37,7 +37,9 @@ import android.widget.TextView;
 
 import com.example.vveng.jianxiao.R;
 import com.example.vveng.jianxiao.utils.AnimationUtil;
-import com.example.vveng.jianxiao.view.adapter.SearchAdapter;
+
+import com.example.vveng.jianxiao.view.adapter.home.SearchAdapter;
+
 
 import java.lang.reflect.Field;
 import java.util.List;

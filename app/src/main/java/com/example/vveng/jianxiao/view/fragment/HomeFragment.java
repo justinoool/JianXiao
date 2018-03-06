@@ -26,9 +26,11 @@ import android.widget.Toast;
 
 import com.example.vveng.jianxiao.R;
 import com.example.vveng.jianxiao.model.HomeItemBean;
-import com.example.vveng.jianxiao.presenter.HomePresenter;
+
+import com.example.vveng.jianxiao.presenter.home.HomePresenter;
 import com.example.vveng.jianxiao.presenter.home.IHomeFragment;
-import com.example.vveng.jianxiao.view.adapter.HomeAdapter;
+import com.example.vveng.jianxiao.view.adapter.home.HomeAdapter;
+
 import com.example.vveng.jianxiao.view.customizeview.MaterialSearchView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.OnLoadmoreListener;
