@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +62,15 @@ public class EatFragment extends BaseFragment implements IEatFragment {
         View view = inflater.inflate(R.layout.fragment_eat, container, false);
         unbinder = ButterKnife.bind(this, view);
         initRecyclerView();
-
+        initSmartFresh();
         return view;
+    }
+
+    /**
+     * 下拉上拉刷新
+     */
+    private void initSmartFresh() {
+
     }
 
 
@@ -70,25 +78,27 @@ public class EatFragment extends BaseFragment implements IEatFragment {
      * recyclerview
      */
     private void initRecyclerView() {
+        presenter = new EatPresenter(this,getActivity());
+
         LinearLayoutManager Manager = new LinearLayoutManager(getActivity());
         Manager.setOrientation(LinearLayoutManager.VERTICAL);
         raidersRecyclerview.setLayoutManager(Manager);
-         apdater = new EatApdater(getActivity(),arrayList);
-         raidersRecyclerview.setAdapter(apdater);
+
 
     }
 
     @Override
     protected void loadData() {
         Toast.makeText(getActivity(), "eat加载了数据", Toast.LENGTH_SHORT).show();
-
-        presenter = new EatPresenter(this,getActivity());
         presenter.loadEatData();
-    }
+
+}
 
     @Override
     public void LoadEatData(ArrayList<EatItemBean> datas) {
-        apdater.setData(datas);
+        Log.d("LoadEatData",datas.size()+"");
+        apdater = new EatApdater(getActivity(),datas);
+        raidersRecyclerview.setAdapter(apdater);
     }
 
     @Override

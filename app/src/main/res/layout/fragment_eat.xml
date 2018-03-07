@@ -7,9 +7,12 @@
     tools:context="com.example.vveng.jianxiao.view.fragment.EatFragment">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/raiders_srlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:srlAccentColor="@color/color_gray"
+
      >
 
         <android.support.v7.widget.RecyclerView
