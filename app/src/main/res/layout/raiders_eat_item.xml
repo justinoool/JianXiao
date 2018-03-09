@@ -2,23 +2,82 @@
     <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-
+        android:id="@+id/raiders_cardview"
         android:layout_margin="10dp"
         app:cardElevation="5dp"
         app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content">
         <RelativeLayout
+            android:id="@+id/raiders_relayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include
-                android:id="@+id/home_contant_detail"
-                layout="@layout/home_contant_detail"/>
+            <RelativeLayout
+                android:id="@+id/raiders_contant_detail_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/raiders_contant_detail_tx"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/boy"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_toRightOf="@+id/raiders_contant_detail_tx"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/raiders_contant_detail_usename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:maxEms="15"
+                        android:maxLines="1"
+                        android:text="lncsoftware"
+                        android:textColor="#9A9A9A"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/raiders_contant_detail_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/raiders_contant_detail_usename"
+                        android:layout_marginLeft="5dp"
+                        android:maxEms="15"
+                        android:maxLines="1"
+                        android:text="1分钟"
+                        android:textColor="#9A9A9A"
+                        android:textSize="10sp"/>
+                </LinearLayout>
+
+                <com.lid.lib.LabelTextView
+                    android:id="@+id/raiders_labeltext"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:label_backgroundColor="@color/lncRed"
+                    app:label_distance="15dp"
+
+                    app:label_orientation="RIGHT_TOP"
+                    app:label_text="POP"
+                    app:label_textSize="10sp"
+                    />
+
+            </RelativeLayout>
+
 
             <LinearLayout
-                android:layout_below="@+id/home_contant_detail"
+                android:layout_below="@+id/raiders_contant_detail_layout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -30,25 +89,81 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                    <ImageView
-                       android:layout_marginLeft="10dp"
+                       android:layout_weight="1"
+                       android:layout_marginLeft="15dp"
                        android:layout_gravity="center"
-                       android:src="@mipmap/ic_raiders_pink_circle"
-                       android:layout_width="wrap_content"
+                       android:src="@mipmap/ic_raiders_pink_circle2"
+                       android:layout_width="0dp"
                        android:layout_height="wrap_content" />
 
                     <TextView
+                        android:layout_weight="15"
                         android:id="@+id/raiders_eat_start"
                         android:textColor="@color/text_black"
-                        android:layout_marginLeft="10dp"
                         android:text="岭南校门口对面好宜家拿快递"
                         android:textSize="16sp"
                         android:maxEms="20"
                         android:maxLines="1"
                         android:maxLength="40"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/ic_raiders_yellow_circle2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_weight="15"
+                        android:id="@+id/raiders_eat_end"
+                        android:textColor="@color/text_black"
+                        android:text="岭南校门口对面好宜家拿快递"
+                        android:textSize="16sp"
+                        android:maxEms="20"
+                        android:maxLines="1"
+                        android:maxLength="40"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/ic_raiders_green_circle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_weight="15"
+                        android:id="@+id/raiders_eat_money"
+                        android:textColor="@color/text_black"
+                        android:text="岭南校门口对面好宜家拿快递"
+                        android:textSize="16sp"
+                        android:maxEms="20"
+                        android:maxLines="1"
+                        android:maxLength="40"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

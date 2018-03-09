@@ -9,6 +9,15 @@ public class EatItemBean {
     private String start;//起始
     private String end;//终点
     private String cost;//费用
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getStart() {
         return start;

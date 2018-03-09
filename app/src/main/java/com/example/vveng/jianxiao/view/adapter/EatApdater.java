@@ -1,7 +1,9 @@
 package com.example.vveng.jianxiao.view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.vveng.jianxiao.R;
 import com.example.vveng.jianxiao.model.EatItemBean;
+import com.lid.lib.LabelTextView;
+import com.lid.lib.LabelView;
 
 import java.util.ArrayList;
 
@@ -32,8 +36,8 @@ public class EatApdater extends RecyclerView.Adapter<EatApdater.EatViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void setData(ArrayList<EatItemBean> datas){
-        if(datas.size() != 0){
+    public void setData(ArrayList<EatItemBean> datas) {
+        if (datas.size() != 0) {
             datas.clear();
         }
         this.beans = datas;
@@ -51,7 +55,28 @@ public class EatApdater extends RecyclerView.Adapter<EatApdater.EatViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull EatViewHolder holder, int position) {
-            holder.start.setText(beans.get(position).getStart());
+
+        holder.start.setText(beans.get(position).getStart());
+        holder.end.setText(beans.get(position).getEnd());
+        holder.money.setText(beans.get(position).getCost());
+        int type = beans.get(position).getType();
+
+        if (type == 1) {
+
+            holder.labelTextView.setLabelText("快递");
+
+        } else if (type == 2) {
+
+
+            holder.labelTextView.setLabelText("食物");
+
+        } else if (type == 3) {
+
+
+            holder.labelTextView.setLabelText("代课");
+
+        }
+
 
     }
 
@@ -62,15 +87,21 @@ public class EatApdater extends RecyclerView.Adapter<EatApdater.EatViewHolder> {
 
     public class EatViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout rl;
-        private TextView start,username,time;
+        private TextView start, end, money, username, time;
         private CircleImageView circleImageView;
+        private CardView cardView;
+        private LabelTextView labelTextView;
         public EatViewHolder(View itemView) {
             super(itemView);
-            rl=itemView.findViewById(R.id.home_contant_detail);
-            circleImageView = rl.findViewById(R.id.home_contant_detail_tx);
-            username = rl.findViewById(R.id.home_contant_detail_usename);
-            time = rl.findViewById(R.id.home_contant_detail_time);
-            start =itemView.findViewById(R.id.raiders_eat_start);
+            rl = itemView.findViewById(R.id.raiders_contant_detail_layout);
+            circleImageView = itemView.findViewById(R.id.raiders_contant_detail_tx);
+            username = itemView.findViewById(R.id.raiders_contant_detail_usename);
+            time = itemView.findViewById(R.id.raiders_contant_detail_time);
+            start = itemView.findViewById(R.id.raiders_eat_start);
+            end = itemView.findViewById(R.id.raiders_eat_end);
+            money = itemView.findViewById(R.id.raiders_eat_money);
+            cardView = itemView.findViewById(R.id.raiders_cardview);
+           labelTextView = itemView.findViewById(R.id.raiders_labeltext);
         }
     }
 }
