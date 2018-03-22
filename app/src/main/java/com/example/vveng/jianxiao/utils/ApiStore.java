@@ -9,6 +9,7 @@ import retrofit2.http.Path;
 /**
  * Created by ${vveng} on 2018/2/24 14:54.
  * 邮箱：vvengstuggle@163.com
+ * 地址类
  */
 
 public interface ApiStore {

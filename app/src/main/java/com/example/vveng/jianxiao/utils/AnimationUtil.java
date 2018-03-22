@@ -12,6 +12,7 @@ import android.view.ViewAnimationUtils;
 
 /**
  * @author Miguel Catalan Bañuls
+ *  搜索框的动画工具类
  */
 public class AnimationUtil {
 

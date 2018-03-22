@@ -28,7 +28,7 @@ import com.lzy.ninegrid.NineGridView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
 
     @BindView(R.id.main_replace)
     FrameLayout mainReplace;
@@ -49,19 +49,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        NineGridView.setImageLoader(new GlideImageLoder());
         ButterKnife.bind(this);
-       StatusBarUtil.setColorForDrawerLayout(this,mainDrawerLayout,0,0);
-        Initbottombar();
-        NavigationViewListenter();
+        NineGridView.setImageLoader(new GlideImageLoder());
+
+        StatusBarUtil.setColorForDrawerLayout(this, mainDrawerLayout, 0, 0);
+        Initbottombar(); //初始化底部导航栏
+        NavigationViewListenter(); //底部导航栏的监听
     }
 
+    /**
+     * 底部导航栏的监听
+     */
     private void NavigationViewListenter() {
-          mainNavView.setItemIconTintList(null);//设置后icon的颜色就是默认的了
+        mainNavView.setItemIconTintList(null);//设置后icon的颜色就是默认的了
         mainNavView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.nav_collection:
                         Toast.makeText(MainActivity.this, "实在不好意思尚未开发，你点设置试试", Toast.LENGTH_SHORT).show();
                         break;
@@ -71,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                     case R.id.nav_my:
                         Toast.makeText(MainActivity.this, "实在不好意思尚未开发，你点设置试试", Toast.LENGTH_SHORT).show();
                         break;
-                     case R.id.nav_setting:
-                         Toast.makeText(MainActivity.this, "实在好意思尚未开发，你点设置试试", Toast.LENGTH_SHORT).show();
+                    case R.id.nav_setting:
+                        Toast.makeText(MainActivity.this, "实在好意思尚未开发，你点设置试试", Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -81,6 +85,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         });
     }
 
+    /**
+     * 左上角的侧滑菜单按钮的监听
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -100,13 +109,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private void Initbottombar() {
         mainBottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         mainBottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
-       // mainBottomNavigationBar.setBarBackgroundColor(R.color.lncRed);
+        // mainBottomNavigationBar.setBarBackgroundColor(R.color.lncRed);
 
         mainBottomNavigationBar
-                .addItem(new BottomNavigationItem(R.mipmap.ic_home,"首页").setActiveColorResource(R.color.lncRed))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_raiders,"攻略").setActiveColorResource(R.color.lncRed))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_chat,"消息").setActiveColorResource(R.color.lncRed))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_hot,"看点").setActiveColorResource(R.color.lncRed))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_home, "首页").setActiveColorResource(R.color.lncRed))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_raiders, "攻略").setActiveColorResource(R.color.lncRed))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_chat, "消息").setActiveColorResource(R.color.lncRed))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_hot, "看点").setActiveColorResource(R.color.lncRed))
                 .setFirstSelectedPosition(0)
                 .initialise();
         mainBottomNavigationBar.setTabSelectedListener(this);
@@ -129,56 +138,56 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     /**
      * 底部导航栏选中
-     * @param position
-     * 注意：transaction.add 和 replace
-     * add 是把一个fragment添加到一个容器 container 里。
-     * replace 是先remove掉相同id的所有fragment，然后在add当前的这个fragment。
+     *
+     * @param position 注意：transaction.add 和 replace
+     *                 add 是把一个fragment添加到一个容器 container 里。
+     *                 replace 是先remove掉相同id的所有fragment，然后在add当前的这个fragment。
      */
     @Override
     public void onTabSelected(int position) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         hideAllFragment(transaction);
-        switch (position){
+        switch (position) {
             case 0:
-                    if(homeFragment==null){
-                        homeFragment = HomeFragment.newInstance(getString(R.string.home));
-                        transaction.add(R.id.main_replace,homeFragment);
-                        mCurrentFragment = homeFragment;
-                    }else{
-                        mCurrentFragment = homeFragment;
-                        transaction.show(homeFragment);
-                    }
-                    transaction.addToBackStack(null);
+                if (homeFragment == null) {
+                    homeFragment = HomeFragment.newInstance(getString(R.string.home));
+                    transaction.add(R.id.main_replace, homeFragment);
+                    mCurrentFragment = homeFragment;
+                } else {
+                    mCurrentFragment = homeFragment;
+                    transaction.show(homeFragment);
+                }
+                transaction.addToBackStack(null);
                 break;
             case 1:
-                        if(raidersFragment==null){
-                            raidersFragment = RaidersFragment.newInstance(getString(R.string.raiders));
-                            transaction.add(R.id.main_replace,raidersFragment);
-                            mCurrentFragment = raidersFragment;
-                        }else {
-                            mCurrentFragment = raidersFragment;
-                            transaction.show(raidersFragment);
-                        }
-                        transaction.addToBackStack(null);
+                if (raidersFragment == null) {
+                    raidersFragment = RaidersFragment.newInstance(getString(R.string.raiders));
+                    transaction.add(R.id.main_replace, raidersFragment);
+                    mCurrentFragment = raidersFragment;
+                } else {
+                    mCurrentFragment = raidersFragment;
+                    transaction.show(raidersFragment);
+                }
+                transaction.addToBackStack(null);
                 break;
             case 2:
-                if(chatFragment==null){
+                if (chatFragment == null) {
                     chatFragment = ChatFragment.newInstance(getString(R.string.chat));
-                    transaction.add(R.id.main_replace,chatFragment);
+                    transaction.add(R.id.main_replace, chatFragment);
                     mCurrentFragment = chatFragment;
-                }else {
+                } else {
                     mCurrentFragment = chatFragment;
                     transaction.show(chatFragment);
                 }
                 transaction.addToBackStack(null);
                 break;
             case 3:
-                if(sellRoommateFragment==null){
+                if (sellRoommateFragment == null) {
                     sellRoommateFragment = SellRoommateFragment.newInstance(getString(R.string.hot));
-                    transaction.add(R.id.main_replace,sellRoommateFragment);
+                    transaction.add(R.id.main_replace, sellRoommateFragment);
                     mCurrentFragment = sellRoommateFragment;
-                }else {
+                } else {
                     mCurrentFragment = sellRoommateFragment;
                     transaction.show(sellRoommateFragment);
                 }
@@ -198,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     /**
      * 隐藏所有的fragment
+     *
      * @param fragmentTransaction
      */
     private void hideAllFragment(FragmentTransaction fragmentTransaction) {
@@ -209,21 +219,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     /**
      * 底部导航栏未选中
+     *
      * @param position
      */
     @Override
     public void onTabUnselected(int position) {
 
     }
+
     /**
      * 底部导航栏重新选中
+     *
      * @param position
      */
     @Override
     public void onTabReselected(int position) {
 
     }
-
 
 
     @Override

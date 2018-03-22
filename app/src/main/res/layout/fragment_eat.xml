@@ -11,10 +11,9 @@
         android:id="@+id/raiders_srlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:background="#444444"
-        app:srlPrimaryColor="#444444"
-        app:srlAccentColor="@android:color/white"
+        android:background="#FFFFFF"
+        app:srlPrimaryColor="#FFFFFF"
+        app:srlAccentColor="@color/black"
         app:srlEnablePreviewInEditMode="true"
      >
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -26,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fadingEdge="none"/>
+
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

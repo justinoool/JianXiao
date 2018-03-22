@@ -37,8 +37,8 @@ public class EatApdater extends RecyclerView.Adapter<EatApdater.EatViewHolder> {
     }
 
     public void setData(ArrayList<EatItemBean> datas) {
-        if (datas.size() != 0) {
-            datas.clear();
+        if (beans.size() != 0) {
+            beans.clear();
         }
         this.beans = datas;
         notifyDataSetChanged();

@@ -1,4 +1,4 @@
-package com.example.vveng.jianxiao.presenter.home;
+package com.example.vveng.jianxiao.presenter;
 
 import com.example.vveng.jianxiao.model.EatItemBean;
 
@@ -9,6 +9,6 @@ import java.util.ArrayList;
  * 邮箱：vvengstuggle@163.com
  */
 
-public interface IEatFragment {
-    void LoadEatData(ArrayList<EatItemBean> datas);
+public interface IEatPresenter {
+    void LoadEatData();
 }

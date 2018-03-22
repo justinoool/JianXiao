@@ -16,10 +16,13 @@ import android.widget.Toast;
 import com.example.vveng.jianxiao.R;
 
 import com.example.vveng.jianxiao.model.EatItemBean;
+import com.example.vveng.jianxiao.model.IEatShow;
 import com.example.vveng.jianxiao.presenter.EatPresenter;
-import com.example.vveng.jianxiao.presenter.home.IEatFragment;
 import com.example.vveng.jianxiao.view.adapter.EatApdater;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 
@@ -30,9 +33,10 @@ import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
+ * 攻略页面的足不出户页面
  */
 
-public class EatFragment extends BaseFragment implements IEatFragment {
+public class EatFragment extends BaseFragment implements IEatShow {
 
 
     @BindView(R.id.raiders_recyclerview)
@@ -43,8 +47,6 @@ public class EatFragment extends BaseFragment implements IEatFragment {
 
     private EatApdater apdater;
     private EatPresenter presenter;
-    private ArrayList<EatItemBean> arrayList = new ArrayList<>();
-
 
     public static EatFragment newInstance(String s1) {
         EatFragment fragment = new EatFragment();
@@ -61,6 +63,7 @@ public class EatFragment extends BaseFragment implements IEatFragment {
 
         View view = inflater.inflate(R.layout.fragment_eat, container, false);
         unbinder = ButterKnife.bind(this, view);
+        presenter = new EatPresenter(this);
         initRecyclerView();
         initSmartFresh();
         return view;
@@ -71,6 +74,23 @@ public class EatFragment extends BaseFragment implements IEatFragment {
      */
     private void initSmartFresh() {
 
+        raidersSrlayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                Toast.makeText(getActivity(), "刷新", Toast.LENGTH_SHORT).show();
+
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+
+
+        raidersSrlayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                Toast.makeText(getActivity(), "加载更多", Toast.LENGTH_SHORT).show();
+                refreshlayout.finishLoadMore(2000);//传入false表示加载失败
+            }
+        });
     }
 
 
@@ -78,33 +98,57 @@ public class EatFragment extends BaseFragment implements IEatFragment {
      * recyclerview
      */
     private void initRecyclerView() {
-        presenter = new EatPresenter(this,getActivity());
+        presenter = new EatPresenter(this);
 
         LinearLayoutManager Manager = new LinearLayoutManager(getActivity());
         Manager.setOrientation(LinearLayoutManager.VERTICAL);
         raidersRecyclerview.setLayoutManager(Manager);
 
+        //   Log.d("LoadEatData",datas.size()+"");
+        apdater = new EatApdater(getActivity(), new ArrayList<EatItemBean>());
+        raidersRecyclerview.setAdapter(apdater);
 
     }
 
+    /**
+     * 加载数据
+     */
     @Override
     protected void loadData() {
         Toast.makeText(getActivity(), "eat加载了数据", Toast.LENGTH_SHORT).show();
-        presenter.loadEatData();
-
-}
-
-    @Override
-    public void LoadEatData(ArrayList<EatItemBean> datas) {
-        Log.d("LoadEatData",datas.size()+"");
-        apdater = new EatApdater(getActivity(),datas);
-        raidersRecyclerview.setAdapter(apdater);
+        presenter.LoadEatData();
     }
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
 
+    /**
+     * 弹出Toas
+     *
+     * @param str
+     */
+    @Override
+    public void ShowToast(String str) {
+        Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void LoginSuccess(String str) {
+        ShowToast(str);
+    }
+
+    @Override
+    public void LoginError(String str) {
+        ShowToast(str);
+    }
+
+    @Override
+    public void LoadEatData(ArrayList<EatItemBean> datas) {
+        Log.d("Eatfragment",datas.size()+"");
+        apdater.setData(datas);
     }
 }

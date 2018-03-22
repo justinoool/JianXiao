@@ -4,8 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-import com.example.vveng.jianxiao.presenter.home.FragmentBackHandler;
-
 import java.util.List;
 
 public class BackHandlerHelper {

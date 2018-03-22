@@ -98,6 +98,7 @@ public class HomeFragment extends Fragment implements IHomeFragment {
 
         //初始化recyclerview
         initRecyclerview();
+
         //初始话数据
         initdata();
 
