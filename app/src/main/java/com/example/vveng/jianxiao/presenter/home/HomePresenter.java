@@ -66,7 +66,7 @@ public class HomePresenter {
         Log.d(TAG,"i:"+i+"j:"+j);
         Observable<HomeItemBean> observable = RetrofitManage.newInstance()
                 .getApiStore(ApiStore.photo_url)
-                .getHomeItemPhotoData(i, j);
+                .getHomeItemPhotoData(1, 1);
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
