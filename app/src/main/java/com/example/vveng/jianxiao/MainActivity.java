@@ -18,10 +18,10 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.vveng.jianxiao.utils.GlideImageLoder;
-import com.example.vveng.jianxiao.view.fragment.ChatFragment;
-import com.example.vveng.jianxiao.view.fragment.HomeFragment;
-import com.example.vveng.jianxiao.view.fragment.RaidersFragment;
-import com.example.vveng.jianxiao.view.fragment.SellRoommateFragment;
+import com.example.vveng.jianxiao.chat.ChatFragment;
+import com.example.vveng.jianxiao.home.view.HomeFragment;
+import com.example.vveng.jianxiao.raiders.RaidersFragment;
+import com.example.vveng.jianxiao.sell.SellRoommateFragment;
 import com.jaeger.library.StatusBarUtil;
 import com.lzy.ninegrid.NineGridView;
 

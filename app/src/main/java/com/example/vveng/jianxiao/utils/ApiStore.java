@@ -1,6 +1,6 @@
 package com.example.vveng.jianxiao.utils;
 
-import com.example.vveng.jianxiao.model.HomeItemBean;
+import com.example.vveng.jianxiao.home.model.HomeItemBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

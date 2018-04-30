@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/home_fragment"
-    tools:context="com.example.vveng.jianxiao.view.fragment.HomeFragment">
+    tools:context="com.example.vveng.jianxiao.home.view.HomeFragment">
 
 <FrameLayout
     android:id="@+id/home_framelayout"
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:background="@color/lncRed"/>
 
-    <com.example.vveng.jianxiao.view.customizeview.MaterialSearchView
+    <com.example.vveng.jianxiao.home.customizeview.MaterialSearchView
         android:id="@+id/home_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
