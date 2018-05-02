@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                         Toast.makeText(MainActivity.this, "实在不好意思尚未开发，你点设置试试", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_my:
-                        Toast.makeText(MainActivity.this, "实在不好意思尚未开发，你点设置试试", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "实在不未开发，你点设置试试", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_setting:
                         Toast.makeText(MainActivity.this, "实在不开发，你点设置试试", Toast.LENGTH_SHORT).show();
